@@ -19,35 +19,35 @@ class Solution {
         //    }
         // }
 
-        // for(int i=m-1;i>=0;i--){
-        //     int prev=n-1;
-        //     for(int j=n-2;j>=0;j--){
-        //         if(boxGrid[i][prev]=='.'&&boxGrid[i][j]=='#'){
-        //             boxGrid[i][prev]=boxGrid[i][j];
-        //             boxGrid[i][j]='.';
-        //             prev--;
-        //         }else if(boxGrid[i][prev]=='.'&&boxGrid[i][j]=='.'){
-        //             continue;
-        //             }else{
-        //             prev=j;
-        //         }
-        //     }
-        // }
-
-//OPTIMAL
-for (int i = 0; i < m; i++) {
-            int write = n - 1;  // rightmost position where a stone can fall
-
-            for (int j = n - 1; j >= 0; j--) {
-                if (boxGrid[i][j] == '*') {
-                    write = j - 1; // reset gravity boundary
-                } else if (boxGrid[i][j] == '#') {
-                    boxGrid[i][j] = '.';
-                    boxGrid[i][write] = '#';
-                    write--;
+        for(int i=m-1;i>=0;i--){
+            int prev=n-1;
+            for(int j=n-2;j>=0;j--){
+                if(boxGrid[i][prev]=='.'&&boxGrid[i][j]=='#'){
+                    boxGrid[i][prev]=boxGrid[i][j];
+                    boxGrid[i][j]='.';
+                    prev--;
+                }else if(boxGrid[i][prev]=='.'&&boxGrid[i][j]=='.'){
+                    continue;
+                    }else{
+                    prev=j;
                 }
             }
         }
+
+//OPTIMAL
+// for (int i = 0; i < m; i++) {
+//             int write = n - 1;  // rightmost position where a stone can fall
+
+//             for (int j = n - 1; j >= 0; j--) {
+//                 if (boxGrid[i][j] == '*') {
+//                     write = j - 1; // reset gravity boundary
+//                 } else if (boxGrid[i][j] == '#') {
+//                     boxGrid[i][j] = '.';
+//                     boxGrid[i][write] = '#';
+//                     write--;
+//                 }
+//             }
+//         }
 
         char[][] array=new char[n][m];
         for(int i=0;i<n;i++){

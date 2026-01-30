@@ -11,10 +11,10 @@ class Solution {
             if (map.containsKey(sorted)) {
                 map.get(sorted).add(str);
             } else {
-                map.put(sorted, new ArrayList<>());
-                map.get(sorted).add(str);
+                // map.put(sorted, new ArrayList<>());
+                // map.get(sorted).add(str);
                 // this is a little redundant. use this
-                // map.computeIfAbsent(key, k -> new ArrayList<>()).add(value);
+                map.computeIfAbsent(sorted, k -> new ArrayList<>()).add(str);
             }
         }
         return new ArrayList<>(map.values());

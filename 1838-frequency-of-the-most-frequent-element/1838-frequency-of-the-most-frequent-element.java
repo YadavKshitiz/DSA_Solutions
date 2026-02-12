@@ -1,5 +1,5 @@
 class Solution {
-       public int maxFrequency(int[] A, int k) {
+      public int maxFrequency(int[] A, int k) {
         int res = 1, i = 0, j;
         long sum = 0;
         Arrays.sort(A);

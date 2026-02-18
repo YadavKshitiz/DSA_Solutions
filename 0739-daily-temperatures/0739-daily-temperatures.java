@@ -2,21 +2,22 @@ import java.util.Stack;
 
 class Solution {
     public int[] dailyTemperatures(int[] temperatures) {
-        int n = temperatures.length;
-        int[] answer = new int[n];
-        Stack<Integer> stack = new Stack<>(); // stores indices
+        int n= temperatures.length;
+        int [] array=new int[n];
+        Stack<Integer> stack=new Stack<>();
 
-        for (int i = 0; i < n; i++) {
-            // Resolve all previous colder days
-            while (!stack.isEmpty() &&
-                   temperatures[i] > temperatures[stack.peek()]) {
-                int prevIndex = stack.pop();
-                answer[prevIndex] = i - prevIndex;
+        for(int i=0;i<n;i++){
+            while(!stack.isEmpty()&&temperatures[i]>temperatures[stack.peek()]){
+                int poop=stack.pop();
+                array[poop]=i-poop;
             }
             stack.push(i);
         }
+        while(!stack.isEmpty()){
+            int poop=stack.pop();
+            array[poop]=0;
+        }
 
-        // Remaining indices already have 0 in answer
-        return answer;
+        return array;
     }
 }

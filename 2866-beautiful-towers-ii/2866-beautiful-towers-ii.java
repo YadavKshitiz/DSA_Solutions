@@ -14,7 +14,6 @@ class Solution {
                     maxHeights.get(stack.peek()) > maxHeights.get(i)) {
                 stack.pop();
             }
-
             if (stack.isEmpty()) {
                 left[i] = (long) maxHeights.get(i) * (i + 1);
             } else {

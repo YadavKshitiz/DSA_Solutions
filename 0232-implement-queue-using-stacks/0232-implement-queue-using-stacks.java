@@ -1,39 +1,39 @@
-import java.util.Stack;
-
 class MyQueue {
-
-    private Stack<Integer> inStack;
-    private Stack<Integer> outStack;
+    Stack<Integer> stack = new Stack<>();
+    Stack<Integer> temp = new Stack<>();
+    int pee = 0;
 
     public MyQueue() {
-        inStack = new Stack<>();
-        outStack = new Stack<>();
+
     }
-    
+
     public void push(int x) {
-        inStack.push(x);
-    }
-    
-    public int pop() {
-        moveIfNecessary();
-        return outStack.pop();
-    }
-    
-    public int peek() {
-        moveIfNecessary();
-        return outStack.peek();
-    }
-    
-    public boolean empty() {
-        return inStack.isEmpty() && outStack.isEmpty();
-    }
-    
-    private void moveIfNecessary() {
-        if (outStack.isEmpty()) {
-            while (!inStack.isEmpty()) {
-                outStack.push(inStack.pop());
-            }
+        if (stack.isEmpty()) {
+            stack.push(x);
+            pee = x;
+        } else {
+            stack.push(x);
         }
+    }
+
+    public int pop() {
+        int size = stack.size();
+        for (int i = 0; i < size - 1; i++) {
+            temp.push(stack.pop());
+        }
+        int remove = stack.pop();
+        while (!temp.isEmpty()) {
+            push(temp.pop());
+        }
+        return remove;
+    }
+
+    public int peek() {
+        return pee;
+    }
+
+    public boolean empty() {
+        return stack.isEmpty();
     }
 }
 

@@ -3,10 +3,8 @@ class Solution {
         if (s == null || s.length() == 0) {
             return "";
         }
-
         int start = 0;
         int end = 0;
-
         for (int i = 0; i < s.length(); i++) {
             int odd = expandAroundCenter(s, i, i);
             int even = expandAroundCenter(s, i, i + 1);

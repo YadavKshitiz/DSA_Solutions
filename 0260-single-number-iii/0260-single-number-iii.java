@@ -4,6 +4,7 @@ class Solution {
         for (int num : nums) {
             res ^= num;
         }
+        
         int setBit = res & (-res);
         int []arr=new int[2];
         for (int num : nums) {

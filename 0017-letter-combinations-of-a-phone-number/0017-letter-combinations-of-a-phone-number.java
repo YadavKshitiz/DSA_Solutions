@@ -15,7 +15,6 @@ class Solution {
             "wxyz" // 9
     };
 
-
     public List<String> letterCombinations(String digits) {
         List<String> result = new ArrayList<>();
 

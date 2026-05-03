@@ -1,32 +1,27 @@
 class Solution {
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        List<List<Integer>> result = new ArrayList<>();
         Arrays.sort(candidates);
-        List<List<Integer>> res = new ArrayList<>();
-
-        dfs(candidates, target, 0, new ArrayList<Integer>(), res);
-        return res;
+        combi(candidates, 0, target, new ArrayList<>(), result);
+        return result;
     }
-    
-    
-    private void dfs(int[] candidates, int target, int start, List<Integer> comb, List<List<Integer>> res) {
-        if (target < 0) {
-            return;
-        }
-        if (target == 0) {
-            res.add(new ArrayList<Integer>(comb));
-            return;
-        }
 
-        for (int i = start; i < candidates.length; i++) {
-            if (i > start && candidates[i] == candidates[i-1]) {
-                continue;
-            }
-            if (candidates[i] > target) {
-                break;
-            }
-            comb.add(candidates[i]);
-            dfs(candidates, target - candidates[i], i + 1, comb, res);
-            comb.remove(comb.size() - 1);
+    void combi(int[] array, int index, int target, List<Integer> current, List<List<Integer>> result) {
+        if (target == 0) {
+            result.add(new ArrayList<>(current));
+            return;
         }
+        if (index == array.length || array[index] > target)
+            return;
+
+        current.add(array[index]);
+        combi(array, index + 1, target - array[index], current, result);
+        current.remove(current.size() - 1);
+        int nextIndex = index + 1;
+        while (nextIndex < array.length && array[nextIndex] == array[index]) {
+            nextIndex++;
+        }
+        combi(array, nextIndex, target, current, result);
+
     }
 }

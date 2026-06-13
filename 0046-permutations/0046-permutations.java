@@ -1,32 +1,32 @@
 class Solution {
     public List<List<Integer>> permute(int[] nums) {
-        List<List<Integer>> res = new ArrayList<>();
-        if (nums.length == 1) {
-            List<Integer> singleList = new ArrayList<>();
-            singleList.add(nums[0]);
-            res.add(singleList);
-            return res;
+        List<List<Integer>> result=new ArrayList<>();
+        boolean []visited=new boolean[nums.length];
+        for(int i=0;i<nums.length;i++){
+            visited[i]=false;
         }
-        
-        for (int i = 0; i < nums.length; i++) {
-            int n = nums[i];
-            int[] remainingNums = new int[nums.length - 1];
-            int index = 0;
-            for (int j = 0; j < nums.length; j++) {
-                if (j != i) {
-                    remainingNums[index] = nums[j];
-                    index++;
-                }
-            }
-            
-            List<List<Integer>> perms = permute(remainingNums);
-            for (List<Integer> p : perms) {
-                p.add(n);
-            }
-            
-            res.addAll(perms);
+        perm(nums,visited,new ArrayList<>(),result);
+        return result;
+    }
+    
+    void perm(int[] nums,boolean []visited,List<Integer> current,List<List<Integer>> result){
+        if(current.size()==nums.length){
+            result.add(new ArrayList<>(current));
+            return;
         }
-        
-        return res;        
+
+        for(int i=0;i<nums.length;i++){
+            if(visited[i]==true){
+                continue;
+            }
+
+            visited[i]=true;
+            current.add(nums[i]);
+
+            perm(nums,visited,current,result);
+
+            current.remove(current.size()-1);
+            visited[i]=false;
+        }
     }
 }

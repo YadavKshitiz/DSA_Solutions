@@ -26,7 +26,7 @@ class Solution {
 
     private TreeNode build(int[] preorder, int[] postorder,
                            int postStart, int postEnd) {
-if(postStart>postEnd) return null;
+        if(postStart>postEnd) return null;
         TreeNode root = new TreeNode(preorder[start++]);
         if (postStart == postEnd) {
             return root;

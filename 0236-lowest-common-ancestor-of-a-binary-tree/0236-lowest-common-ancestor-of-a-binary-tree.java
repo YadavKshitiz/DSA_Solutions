@@ -21,9 +21,7 @@ class Solution {
         if (node1 != null && node2 != null) {
             return root;
         }
-        if (node1 != null) {
-            return node1;
-        }
-        return node2;
+        
+        return node1!=null?node1:node2;
     }
 }
